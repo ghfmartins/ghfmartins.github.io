@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gustavo Martins</title>
+<meta name="description" content="Gustavo Martins, mobile software engineer. Native apps for Android (Kotlin, Java) and iOS (Swift, SwiftUI).">
+<meta property="og:title" content="Gustavo Martins · Mobile Engineer">
+<meta property="og:description" content="Native apps for Android (Kotlin, Java) and iOS (Swift, SwiftUI).">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f1512">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+/* Layout: Android-native identity. Material You dynamic color drives every token from one seed hue (--h);
+   section headers are Logcat lines; the hero is a phone running the portfolio as a settings screen. */
+@property --h { syntax: '<number>'; inherits: true; initial-value: 152; }
+
+:root {
+  --h: 152;
+  --bg:            oklch(98.4% 0.008 var(--h));
+  --surface:       oklch(95.8% 0.016 var(--h));
+  --surface-2:     oklch(92.6% 0.026 var(--h));
+  --outline:       oklch(83% 0.02 var(--h));
+  --fg:            oklch(21% 0.02 var(--h));
+  --fg-muted:      oklch(44% 0.022 var(--h));
+  --primary:       oklch(46% 0.12 var(--h));
+  --on-primary:    oklch(99% 0.01 var(--h));
+  --primary-c:     oklch(90.5% 0.07 var(--h));
+  --on-primary-c:  oklch(26% 0.07 var(--h));
+  --tert-c:        oklch(91% 0.055 calc(var(--h) + 75));
+  --on-tert-c:     oklch(30% 0.07 calc(var(--h) + 75));
+  --phone:         oklch(19% 0.012 var(--h));
+  --phone-edge:    oklch(34% 0.015 var(--h));
+  --lv-v: oklch(52% 0.01 250);
+  --lv-d: oklch(50% 0.14 250);
+  --lv-i: oklch(50% 0.13 150);
+  --lv-w: oklch(56% 0.13 75);
+  --font-display: 'Roboto Flex', Roboto, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Roboto Flex', Roboto, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --r-xl: 28px; --r-lg: 20px; --r-md: 14px;
+  transition: --h 0.7s cubic-bezier(.2,.7,.2,1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:            oklch(15.5% 0.012 var(--h));
+    --surface:       oklch(19.5% 0.016 var(--h));
+    --surface-2:     oklch(24% 0.022 var(--h));
+    --outline:       oklch(36% 0.02 var(--h));
+    --fg:            oklch(93% 0.012 var(--h));
+    --fg-muted:      oklch(74% 0.018 var(--h));
+    --primary:       oklch(82% 0.11 var(--h));
+    --on-primary:    oklch(24% 0.07 var(--h));
+    --primary-c:     oklch(34% 0.08 var(--h));
+    --on-primary-c:  oklch(92% 0.05 var(--h));
+    --tert-c:        oklch(33% 0.06 calc(var(--h) + 75));
+    --on-tert-c:     oklch(91% 0.05 calc(var(--h) + 75));
+    --phone:         oklch(8% 0.008 var(--h));
+    --phone-edge:    oklch(30% 0.015 var(--h));
+    --lv-v: oklch(70% 0.01 250);
+    --lv-d: oklch(74% 0.12 250);
+    --lv-i: oklch(78% 0.13 150);
+    --lv-w: oklch(80% 0.13 80);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:            oklch(15.5% 0.012 var(--h));
+  --surface:       oklch(19.5% 0.016 var(--h));
+  --surface-2:     oklch(24% 0.022 var(--h));
+  --outline:       oklch(36% 0.02 var(--h));
+  --fg:            oklch(93% 0.012 var(--h));
+  --fg-muted:      oklch(74% 0.018 var(--h));
+  --primary:       oklch(82% 0.11 var(--h));
+  --on-primary:    oklch(24% 0.07 var(--h));
+  --primary-c:     oklch(34% 0.08 var(--h));
+  --on-primary-c:  oklch(92% 0.05 var(--h));
+  --tert-c:        oklch(33% 0.06 calc(var(--h) + 75));
+  --on-tert-c:     oklch(91% 0.05 calc(var(--h) + 75));
+  --phone:         oklch(8% 0.008 var(--h));
+  --phone-edge:    oklch(30% 0.015 var(--h));
+  --lv-v: oklch(70% 0.01 250);
+  --lv-d: oklch(74% 0.12 250);
+  --lv-i: oklch(78% 0.13 150);
+  --lv-w: oklch(80% 0.13 80);
+  color-scheme: dark;
+}
+@media (prefers-reduced-motion: reduce) { :root { transition: none; } }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  font-variation-settings: 'opsz' 16;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--bg);
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 8px; }
+
+.wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) {
+  .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); }
+}
+.mono { font-family: var(--font-mono); }
+
+/* ---------- top app bar ---------- */
+.appbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9;
+  background: color-mix(in oklch, var(--bg) 86%, transparent);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid color-mix(in oklch, var(--outline) 55%, transparent);
+}
+.appbar .wrap { display: flex; align-items: center; gap: 20px; height: 64px; }
+.brand { font-family: var(--font-mono); font-weight: 700; font-size: 14px; text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.brand b { color: var(--primary); font-weight: 700; }
+.nav { display: flex; gap: 4px; margin-left: auto; }
+.nav a {
+  text-decoration: none; font-size: 14px; font-weight: 500; color: var(--fg-muted);
+  padding: 8px 12px; border-radius: 999px; transition: background-color .2s, color .2s;
+}
+.nav a:hover { background: var(--surface-2); color: var(--fg); }
+.clock { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); white-space: nowrap; }
+.seg { display: inline-flex; border: 1px solid var(--outline); border-radius: 999px; overflow: hidden; flex-shrink: 0; }
+.seg button {
+  font: 600 12px/1 var(--font-mono); letter-spacing: .04em; color: var(--fg-muted);
+  background: transparent; border: 0; padding: 9px 12px; cursor: pointer; min-height: 36px;
+}
+.seg button[aria-pressed="true"] { background: var(--primary-c); color: var(--on-primary-c); }
+@media (max-width: 860px) { .nav { display: none; } .clock { margin-left: auto; } }
+@media (max-width: 400px) { .clock { display: none; } .seg { margin-left: auto; } }
+
+/* ---------- logcat line ---------- */
+.log {
+  font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; color: var(--fg-muted);
+  display: flex; flex-wrap: wrap; gap: 0 10px; align-items: baseline; margin: 0 0 14px;
+}
+.log .ts { opacity: .75; font-variant-numeric: tabular-nums; }
+.log .lv {
+  display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 5px;
+  font-weight: 700; font-size: 11.5px; color: var(--bg);
+}
+.lv-v { background: var(--lv-v); } .lv-d { background: var(--lv-d); }
+.lv-i { background: var(--lv-i); } .lv-w { background: var(--lv-w); }
+.log .tag { color: var(--fg); font-weight: 700; }
+.log .msg { color: var(--fg-muted); }
+
+/* ---------- hero ---------- */
+.hero { padding-block: 56px 72px; }
+.hero .wrap { display: grid; gap: 56px; align-items: center; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr); }
+@media (max-width: 900px) { .hero { padding-block: 36px 56px; } .hero .wrap { grid-template-columns: 1fr; gap: 44px; } }
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--lv-i); display: inline-block;
+  box-shadow: 0 0 0 0 color-mix(in oklch, var(--lv-i) 60%, transparent);
+  animation: ping 2.4s ease-out infinite; align-self: center;
+}
+@keyframes ping { 0% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--lv-i) 55%, transparent); } 80%,100% { box-shadow: 0 0 0 9px transparent; } }
+@media (prefers-reduced-motion: reduce) { .status-dot { animation: none; } }
+
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 9.2vw, 112px); line-height: .9; letter-spacing: -0.035em;
+  font-weight: 760; font-variation-settings: 'opsz' 144, 'wdth' 118;
+  margin: 8px 0 22px; text-wrap: balance;
+}
+h1 .last { display: block; color: var(--primary); font-weight: 300; font-variation-settings: 'opsz' 144, 'wdth' 140; letter-spacing: -0.04em; }
+.role {
+  font-family: var(--font-display); font-size: clamp(19px, 2.2vw, 23px); line-height: 1.35;
+  font-weight: 560; font-variation-settings: 'opsz' 28, 'wdth' 104; margin: 0 0 16px; max-width: 34ch;
+}
+.lede { color: var(--fg-muted); font-size: 17px; max-width: 54ch; margin: 0 0 28px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 22px;
+  border-radius: 999px; font: 600 15px/1 var(--font-body); text-decoration: none; cursor: pointer;
+  border: 1px solid transparent; transition: transform .15s ease, background-color .2s, box-shadow .2s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: none; }
+.btn-filled { background: var(--primary); color: var(--on-primary); }
+.btn-filled:hover { box-shadow: 0 6px 18px -8px var(--primary); }
+.btn-tonal { background: var(--primary-c); color: var(--on-primary-c); }
+.btn-outline { border-color: var(--outline); color: var(--fg); background: transparent; }
+.btn-outline:hover { background: var(--surface-2); }
+
+/* ---------- phone ---------- */
+.device { display: grid; justify-items: center; gap: 14px; }
+.phone {
+  width: 100%; max-width: 330px; aspect-ratio: 9 / 18.6;
+  background: var(--phone); border-radius: 46px; padding: 11px;
+  box-shadow: 0 0 0 1.5px var(--phone-edge), 0 30px 60px -28px color-mix(in oklch, var(--primary) 45%, black), 0 10px 22px -12px rgb(0 0 0 / .35);
+  position: relative;
+}
+.screen {
+  height: 100%; border-radius: 36px; overflow: hidden; background: var(--bg);
+  display: flex; flex-direction: column; position: relative;
+}
+.sbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 22px 6px; font: 600 12px/1 var(--font-body); font-variant-numeric: tabular-nums; }
+.sbar .icons { display: flex; gap: 5px; align-items: center; }
+.cam { position: absolute; top: 12px; left: 50%; width: 11px; height: 11px; margin-left: -5.5px; border-radius: 50%; background: var(--phone); }
+.app { flex: 1; padding: 10px 16px 0; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.app-top { display: flex; align-items: center; gap: 12px; padding: 4px 4px 0; }
+.app-top h3 { margin: 0; font: 400 22px/1.1 var(--font-display); font-variation-settings: 'opsz' 28; letter-spacing: -0.01em; }
+.who { display: flex; align-items: center; gap: 12px; background: var(--surface-2); border-radius: var(--r-lg); padding: 12px; }
+.who img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: var(--primary-c); }
+.who b { display: block; font-size: 15px; line-height: 1.25; }
+.who span { font-size: 12px; color: var(--fg-muted); line-height: 1.3; display: block; }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.tile {
+  display: flex; align-items: center; gap: 9px; border-radius: 18px; padding: 10px 10px;
+  background: var(--surface-2); color: var(--fg); min-width: 0;
+}
+.tile.on { background: var(--primary-c); color: var(--on-primary-c); }
+.tile i {
+  font: 700 10px/1 var(--font-mono); font-style: normal; flex-shrink: 0;
+  width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--bg); color: var(--fg);
+}
+.tile.on i { background: var(--primary); color: var(--on-primary); }
+.tile div { min-width: 0; }
+.tile b { display: block; font-size: 12.5px; line-height: 1.2; font-weight: 600; }
+.tile small { display: block; font-size: 10.5px; line-height: 1.25; opacity: .8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rows { background: var(--surface); border-radius: var(--r-lg); padding: 4px 14px; }
+.rows div { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; font-size: 12.5px; }
+.rows div + div { border-top: 1px solid color-mix(in oklch, var(--outline) 60%, transparent); }
+.rows span { color: var(--fg-muted); }
+.rows b { font-weight: 600; text-align: right; }
+.style-label { font-size: 12px; font-weight: 600; color: var(--fg-muted); margin: 2px 4px -4px; }
+.swatches { display: flex; justify-content: space-between; gap: 6px; padding: 10px; background: var(--surface); border-radius: var(--r-lg); }
+.sw {
+  --sh: 152;
+  width: 38px; height: 38px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; position: relative;
+  background:
+    linear-gradient(to bottom, oklch(72% 0.13 var(--sh)) 50%, transparent 50%),
+    linear-gradient(to right, oklch(86% 0.07 var(--sh)) 50%, oklch(62% 0.1 calc(var(--sh) + 75)) 50%);
+  transition: transform .2s ease, border-radius .3s ease;
+}
+.sw:hover { transform: scale(1.06); }
+.sw[aria-pressed="true"] { border-radius: 12px; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--primary); }
+.sw[aria-pressed="true"]::after {
+  content: ""; position: absolute; inset: 0; margin: auto; width: 16px; height: 16px; border-radius: 50%;
+  background: oklch(25% 0.06 var(--sh)) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.2 8.3l2.4 2.4 5.2-5.3' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;
+}
+.app-foot { margin-top: auto; display: grid; place-items: center; padding: 12px 0 10px; }
+.gesture { width: 108px; height: 4px; border-radius: 4px; background: var(--fg); opacity: .55; }
+.device-cap { font-size: 13px; color: var(--fg-muted); text-align: center; max-width: 34ch; margin: 0; }
+.device-cap code { font-family: var(--font-mono); font-size: 12px; color: var(--fg); }
+
+/* ---------- sections ---------- */
+section.block { padding-block: 72px; border-top: 1px solid color-mix(in oklch, var(--outline) 55%, transparent); }
+@media (max-width: 720px) { section.block { padding-block: 56px; } }
+h2 {
+  font-family: var(--font-display); font-size: clamp(32px, 4.6vw, 52px); line-height: 1.02;
+  font-weight: 700; letter-spacing: -0.03em; font-variation-settings: 'opsz' 96, 'wdth' 112;
+  margin: 0 0 18px; text-wrap: balance; max-width: 20ch;
+}
+.sec-intro { color: var(--fg-muted); font-size: 17px; max-width: 60ch; margin: 0 0 36px; }
+
+/* about */
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 48px; align-items: start; }
+@media (max-width: 860px) { .about { grid-template-columns: 1fr; gap: 20px; } }
+.about-body p { margin: 0 0 16px; font-size: 18px; line-height: 1.65; max-width: 62ch; }
+.about-body p:last-child { margin-bottom: 0; }
+.about-body strong { font-weight: 650; color: var(--primary); }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.fact { font: 500 13px/1 var(--font-mono); padding: 9px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--outline); }
+
+/* stack */
+.stack { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 1000px) { .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .stack { grid-template-columns: 1fr; } }
+.grp { background: var(--surface); border-radius: var(--r-xl); padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.grp.main { background: var(--primary-c); color: var(--on-primary-c); }
+.grp-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.grp h3 { margin: 0; font: 700 20px/1.15 var(--font-display); font-variation-settings: 'opsz' 28, 'wdth' 110; letter-spacing: -0.01em; }
+.grp .lvl { font: 500 11.5px/1.3 var(--font-mono); opacity: .75; text-align: right; }
+.grp p { margin: 0; font-size: 14px; line-height: 1.5; opacity: .85; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
+.chips li { font: 500 12.5px/1 var(--font-mono); padding: 8px 10px; border-radius: 8px; background: var(--bg); color: var(--fg); }
+.grp.main .chips li { background: color-mix(in oklch, var(--bg) 70%, var(--primary-c)); }
+
+/* products */
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .cards { grid-template-columns: 1fr; } }
+.card {
+  border: 1px solid var(--outline); border-radius: var(--r-xl); padding: 26px;
+  display: flex; flex-direction: column; gap: 14px; background: var(--bg); min-width: 0;
+}
+.card.lead { background: var(--surface); border-color: transparent; }
+.card-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; flex-wrap: wrap; }
+.kicker { font: 500 12.5px/1.4 var(--font-mono); color: var(--fg-muted); }
+.plats { display: flex; gap: 6px; }
+.plat { font: 600 11.5px/1 var(--font-mono); padding: 6px 9px; border-radius: 999px; background: var(--tert-c); color: var(--on-tert-c); }
+.card h3 { margin: 0; font: 700 24px/1.12 var(--font-display); font-variation-settings: 'opsz' 36, 'wdth' 112; letter-spacing: -0.02em; text-wrap: balance; }
+.card ul.pts { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 15px; color: var(--fg); }
+.card ul.pts li::marker { color: var(--primary); }
+.card p { margin: 0; font-size: 15px; }
+.card .chips { margin-top: auto; padding-top: 6px; }
+.card .chips li { background: var(--surface-2); }
+.card.lead .chips li { background: var(--bg); }
+.note { font-size: 13px; color: var(--fg-muted); display: flex; gap: 8px; align-items: center; }
+.note::before { content: ""; width: 7px; height: 7px; border-radius: 2px; background: var(--fg-muted); opacity: .6; flex-shrink: 0; }
+.link { color: var(--primary); font-weight: 600; text-decoration: none; font-size: 15px; }
+.link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* timeline */
+.tl-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 56px; }
+@media (max-width: 900px) { .tl-grid { grid-template-columns: 1fr; gap: 48px; } }
+.col-title { font: 600 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 22px; }
+.tl { list-style: none; margin: 0; padding: 0; position: relative; }
+.tl::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: var(--surface-2); border-radius: 2px; }
+.tl > li { position: relative; padding: 0 0 30px 34px; }
+.tl > li:last-child { padding-bottom: 0; }
+.tl > li::before {
+  content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--primary);
+}
+.tl > li.recent::before { background: var(--primary); }
+.tl > li.other::before { border-color: var(--outline); }
+.when { font: 500 12.5px/1.4 var(--font-mono); color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+.tl h3 { margin: 4px 0 2px; font: 650 19px/1.25 var(--font-display); font-variation-settings: 'opsz' 24, 'wdth' 106; }
+.tl .org { font-size: 14.5px; color: var(--fg-muted); margin: 0 0 8px; }
+.tl ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; }
+.tl ul li::marker { color: var(--primary); }
+.sub-roles { display: grid; gap: 10px; margin-top: 4px; }
+.sub-roles div { font-size: 15px; }
+.sub-roles .when { margin-right: 6px; }
+.edu { display: grid; gap: 12px; }
+.edu-item { background: var(--surface); border-radius: var(--r-lg); padding: 18px 20px; }
+.edu-item h3 { margin: 4px 0 2px; font: 650 18px/1.25 var(--font-display); font-variation-settings: 'opsz' 24, 'wdth' 106; }
+.edu-item p { margin: 0; font-size: 14.5px; color: var(--fg-muted); }
+
+/* contact */
+.contact {
+  background: var(--primary-c); color: var(--on-primary-c); border-radius: 36px;
+  padding: clamp(28px, 5vw, 56px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 36px; align-items: end;
+}
+@media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+.contact .log { color: inherit; opacity: .9; }
+.contact .log .tag, .contact .log .msg { color: inherit; }
+.contact h2 { margin-bottom: 14px; }
+.contact p { margin: 0; font-size: 17px; max-width: 46ch; }
+.links { display: grid; gap: 10px; }
+.lrow {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 0;
+  background: var(--bg); color: var(--fg); border-radius: 18px; padding: 14px 16px; text-decoration: none;
+  transition: transform .15s ease;
+}
+a.lrow:hover { transform: translateX(3px); }
+.lrow span:first-child { font-weight: 650; font-size: 15px; }
+.lrow .val { font: 500 13px/1.3 var(--font-mono); color: var(--fg-muted); overflow-wrap: anywhere; text-align: right; user-select: all; }
+.copy {
+  font: 600 12px/1 var(--font-mono); border: 1px solid var(--outline); background: transparent; color: var(--fg);
+  border-radius: 999px; padding: 8px 12px; cursor: pointer; min-height: 32px; flex-shrink: 0;
+}
+.copy:hover { background: var(--surface-2); }
+.mail-val { display: flex; align-items: center; gap: 10px; min-width: 0; }
+
+footer { padding-block: 40px 56px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font: 400 12.5px/1.5 var(--font-mono); color: var(--fg-muted); }
+
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+/* entrance: content visible at rest, only a gentle lift */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy > * { animation: rise .6s cubic-bezier(.2,.7,.2,1) both; }
+  .hero-copy > *:nth-child(2) { animation-delay: .05s; }
+  .hero-copy > *:nth-child(3) { animation-delay: .1s; }
+  .hero-copy > *:nth-child(4) { animation-delay: .15s; }
+  .hero-copy > *:nth-child(5) { animation-delay: .2s; }
+  .device { animation: rise .8s .15s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes rise { from { transform: translateY(10px); } to { transform: none; } }
+}
+</style>
+</head>
+<body>
+<header class="appbar">
+  <div class="wrap">
+    <a class="brand" href="#inicio">gustavo<b>.</b>martins</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#sobre" data-i18n="nav.about">About</a>
+      <a href="#stack" data-i18n="nav.stack">Stack</a>
+      <a href="#produtos" data-i18n="nav.work">Products</a>
+      <a href="#trajetoria" data-i18n="nav.path">Journey</a>
+      <a href="#contato" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <span class="clock"><span data-i18n="clock.city">Goiânia, BR</span> · <span data-clock>--:--</span> · UTC−3</span>
+    <div class="seg" role="group" aria-label="Language / Idioma">
+      <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" id="lang-pt" data-lang="pt" aria-pressed="false">PT</button>
+    </div>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="log"><span class="status-dot" aria-hidden="true"></span><span class="lv lv-i" aria-hidden="true">I</span><span><span class="tag">Status</span>: <span class="msg" data-i18n="hero.status">open to new opportunities</span></span></p>
+        <h1>Gustavo <span class="last">Martins</span></h1>
+        <p class="role" data-i18n="hero.role">Mobile software engineer. Native apps for Android and iOS.</p>
+        <p class="lede" data-i18n="hero.lede">I have been building mobile apps since 2021, focused on Android (Kotlin and Java) with hands-on iOS experience in Swift and SwiftUI. I led the architecture modernization of apps in production and worked on Sephora’s native apps for Brazil and Mexico.</p>
+        <div class="actions">
+          <a class="btn btn-filled" href="#contato" data-i18n="hero.cta">Get in touch</a>
+          <a class="btn btn-tonal" href="https://www.linkedin.com/in/dev-gustavomartins" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn btn-outline" href="https://github.com/ghfmartins" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="device">
+        <div class="phone">
+          <div class="screen">
+            <span class="cam" aria-hidden="true"></span>
+            <div class="sbar" aria-hidden="true">
+              <span data-clock>--:--</span>
+              <span class="icons">
+                <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4" y="5" width="3" height="6" rx="1"/><rect x="8" y="2.5" width="3" height="8.5" rx="1"/><rect x="12" y="0" width="3" height="11" rx="1"/></svg>
+                <svg width="22" height="11" viewBox="0 0 22 11" fill="none"><rect x=".75" y=".75" width="18" height="9.5" rx="2.5" stroke="currentColor" stroke-width="1.5"/><rect x="2.5" y="2.5" width="12" height="6" rx="1.2" fill="currentColor"/><rect x="20" y="3.5" width="1.6" height="4" rx=".8" fill="currentColor"/></svg>
+              </span>
+            </div>
+            <div class="app">
+              <div class="app-top"><h3 data-i18n="phone.title">Profile</h3></div>
+              <div class="who">
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCADIAMgDASIAAhEBAxEB/8QAHAAAAAcBAQAAAAAAAAAAAAAAAAIDBAUGBwEI/8QAGgEAAgMBAQAAAAAAAAAAAAAAAAECAwQFBv/aAAwDAQACEAMQAAAB8+LNQRepqtGpANzjcmTIjjZ/GsP2b0BPJ+bm5TwPm01lrPAVGUV+twh61dR4K9S6w4IAT4Ah80dtAUUTejRIoiJ90SEZ32u1drTo1O/4FdIy0Fi3h51SVanqpKOepT0LZU6j5SOaL1ToJBYDbdN1DhsuQBMxEuNBhPR6ZG7+7U6Iq37BN83reeZvVKtJZrXNJzq/JKOq3OackBBTy1lVYaKidZOEAKggBHoAyu2rsEJCOdBNMX7GMrJveMbbzOstNxs3l2JwNxbaKqFTdRgqbc0d6wcox5cMuvyMhX6tbVGq9cAgHwThQczSblJwhsuVwybQlZCubvYs5qnO7G1tfPEfOHrFfFV6NWrz/kdW/L7GrmM3Ciecsrh3dgyJWcgbqWThg4nW5CIUkzJdcDmTKCi6PWWqYrMtVZo6UvZOT3sJT2FhNOnF6FlflqC2BmGf26e0aBTc92bDpolStVR281i4RXuyqAwTYcJySWIUA7KExSsvATSloGk4VcuZ2NPqletdGzi+YQ11OnW3NZ9WaATPuRhNNaplGnFLQXO7uaQjllKEgCBSih3jj03DjUKocDzkXYUR2kZXe8e6WiZSTwdOLRWjLbOmnGEaVklU4lbpDyK6vGcEbcuployQjHGxCQGS6ndL3XSdVAwOVGkowTjdTTTW9VxLQuZ0T22Lp2LdrzTN5lS0GrsXCUhHOmbWTo6hUu/wK1zqdF0y0NxPVhNjla8K6kOrjUcytj01Qz5bmzOl3pJqnxstCYNW0cx7SeL128nKI0XrO27yLKZtUraZeZrM97LyakJKyLKFW9vTzXz4nB470PkW8IWL1XFcsXLbZnRIiWM1OdKFYgLpS8d4QX5Ta/s1HTot0OPpXa7LEwZP9WbS5Ol2frcx+fnLa39ghNOw6lxIjx/ofOiUHKe1887ZkjWOC8SG6OkoAptySi6AaRjcOgoN1SbB0RJ8qys11UZeknuvO8kGU5potGtQFt8v2Y0LDmbPFrAD1nHmGYFkGj4BM6gE11QBnKyBCUQYDFeRwADmXAtrt/QNeaXlwJr0nWwPHd6MAGLR/8QAKxAAAQQBAwQBBAIDAQAAAAAAAwABAgQFERIhBhATIhQgIzEyJEEVFjM0/9oACAEBAAEFAkEnjNY9DtJbuNVrwGW01iO0vf8ArtuW5bluW5F5juW5blu72+Zs6jJM6Z+NdHu/9FQw5sgq/SIpOHpWpVafTmLsqHSlHZkOjTRcopgn3f2D9RPaqyZ+25O6N7ArVnI4Jxx1MnUBJPjMt7hZyyO7+U5CO9s9a8+R6YrGiUchTQ+R/wB/TD2qMmZMLWLx0Tsoe1SJ4CBYuFuoOkVCy8ViTmsyJOqJRyjQNaYtiVlvjTuRmd9FXTt7bVtTR7aKty6ZA5hKCdlBngJ2ck6GALedumBMxultWxdEeNWd32ZVac2kbINXRI/JrGHGBLA9sgv7k4J9NeW08o7SKo/Lx9iQ5PGWzA4J91OkIUPgwlG3VfaWn5GsYtX6EhyrVY62D+AFMj2pZSnpWG/vab7jfj6bH/VV30nPiRH5xld7NqFZhRjYdnAZ3YrvKJX8aLODteDvf/Fymg9PysoWHFRu5imMlFuFaZRbjatv0F9hoL6SL+Hb26enuyEHecA19UITRTwip1IEVjEvKP8Agiyk1KMGmOIRXrLfJkWBaO1Hb7UE0U0fobmuh/nTcLxe2ErEq5YFoIIl6mqAf/aq03BmGIi5mMVHqIGtfO1pJyhK1t9V1DCQr7E/hqfNaMvbVM62ratqF+rRQ2VaGovjM84axtWzSg5zx2iNpLE2ZmFdNKMbdqOtO1DWlljCcGc8r9XhaQekqdCdTP0B0bcH3C15bu3YX/X8PB1TJ6+TgY91i3jBWI28HCUKWBGKHTGEG8ursGKMY4f7kMH4bIKpIToViFJm6rFxYI6Nmy/wgJ/2btqtVqovtkVtCxdVZJprHSaSnQYqPjSxXx2GsUOAFl4x3FDDyyqaqvjt86NKII5CDEGABZk6pZoXxP7GbSce2vbVO6I6Z1Xno7z2rFZFpQBkm2vlGaM7nmtg6oBAh+pwOrt6uS1VOHYKY3Rj7Ue1uelfx2Kr522PIZaP7WW+5F1F/odSfUEUL8z/AExUvuwJJlvlN3mAGPlhhknZpzGulwj32v404ZCTNPJPKNi1sEQ5C97DcM/A35+iHI2UPz+Q1TeCwN90bOviryuCUbl+SIe26lfmJAvkKtU6y9jZX1W5aqXtWjy9NmefbTsFuYwQ4csP7Z/Vq5JVo+RpIftCxR8yDQPBAaEUXTyNypcLIWfPZd1uW5BfdX/D9KV3Ple7KD6E/DxdSL4wBu+O7aE1qu1uYHxuQGRStRgpWmm5XrjC77pNLSNgj7ZzfduWq1VJ/V/36GFrY17s61UQSJIQojRPeNmHjL01k/I2Qo73JAgJAvkk4ySW8hIjbRaKxUlbryxwL4bPT5hqY5ikqT6El+/QwfHXX9aoIpnkGlEadNHhZCGhxmkGeKycMpXsVmInryFINiUW8jlaEGZtNVvYI8abdX3aqYxnibpcB03TNgE7ICVT4YPwqK14oYmdhPtrs8dyfs6yf/odAsTrFoZ4d1ngxG+PooQ0TaI1oYmyGRclXFR21NeJPohE5eXkg1QWQYsdp9dXx+MjXXMkfh2dP3ysNJrRtqrZOxUcfU+rf7LB0TO71LJb3ewQ06OjV4uv2iJNwsMFy2iQ4xlD4zNwv6P+uv0XgeUPfRSbTu0XdDjoq+T8QwGiWCjH3hHcsHR+OG0LQf7J00kaeq3dmn3uV/CT6JR0TOhx3QZkzKrDxhjJDisHi3tEgFmFaBpOBpVnYrTjrxKe15aSZnTJuWRRxJGxTkF++uqcaE7jeiGNmY6IxLRBGgQjJdLUnkG5NoSOViGm6iTwkiXcjNxWmnZM6bszp23NdpeNR7bXQ9FIeqxr+KTE3Mh8QqC8hKIY46hkrO6AbHP/xAAmEQACAgEDBAICAwAAAAAAAAAAAQIRAxASIQQTIDEwQSIyQlFh/9oACAEDAQE/AfHazayviSsTGUUhrzoxY3N0LHCCHijL0ZMDXocGP4OlX42MUi0xxTMip6UV4JWJdpUd2mcVY5p8C4Jwc50jJjljk4y9i8UKmdmL5H+9fQ8CZs2EErs6nI8mRyel+COnnceTckOX+CkmiRkybBu3fn0svYkm7L+qHHmxsyz3S1jG1rdDyf0dLP8Ai/se6DO9ZubJt0LNF8PWHrSWRLhDbekHwYs6ktsvZt0ySUUT/ZinKPox55XTK4Jz+l4QfGkcso+md+ZObl7JJ6dNDdkEV4J0J3pY+OSTvTpo7Y8aLR6xfOr9aRVswoaP/8QAJxEAAgIBAwMEAgMAAAAAAAAAAAECEQMQEiEEIDETIjBRMkEUI0L/2gAIAQIBAT8B7bNyL+J62WxO/gyT2jySk+BZJR8kMyZuQvg6l+4iuRxsaaN7Rjdx51vsbH/Y+T0+C2nRs4HAxyqHJGSkrQ+2RJP9HqSSoS9tiytcG5s5qjFHbGu5oyrbI8iS+x8FmOG4Srv6mPgToTizd+hGKO2OuSe11qk34I4Ps6rH/tfoW2aPTopEKsl08lyitMz9+kMLlyxRUfGmRcsy4HB7oeDcWYouUiH4ocIy/IydNGriN27MWKvc+zKqeksUJeUfx4GPGo+CElVaddm9LC19iEy9Zx3Iaa0ojyRW0X2ddNznz4OB6J8azSa1XkRJ1E6mTsTP/8QAMxAAAQMCBAQEBQQCAwAAAAAAAQACEQMhEBIgMSJBUWETMlJxBCNigaEwM0KRBRQ1Q7H/2gAIAQEABj8CTHdCnjvpZ7p36gOtjvU0HQcJ63wERTb6nIua/PlWesC6/NwWcNyjo1Hzx9VlPwThXG+SeJFlRpY8bh36dE9Jbqpu7JvOdkKtQcf8QuBxjsh4jW1jvBuvEzUaBP3X/IMZG4KDqfxniZejZQZ8dQa8eqIci/8Ax9SCL+G87+yLHtyuHI4O11B6SDjOJHQpn0791nqPjkArT7rgEeyjyx1XHSOf6im+CGzNy0QhmfOZR4haUXu4nDn1/Rez1NxIRwP1LILhAv8AIF5boQIUvvCcWvsfwsxqJrXEE8gF4vifMJ8sIRJ9QRIFsHamHunDE4Ny3QdVbxHkg3KrC+BCMq0rPXcYHaSVno2ds2eQRn8I1rNLTBHVBHXPW+Axos2CaY0dlBt3VoWygmG80P6lfFPDQxoFsGnXTd2jEHCOgUK+N1wkK+yiE6EWHcqvTqtzBt7HBhR1ezsQgqjKghwYuJwUF64XyvNZeZQagH3UZgpbdGEDMBPa1sn+Rw9jrqDtopR1VR/8skJ3iTCl0CVwbdsDNlF3FTsezkCyqXDoUA9UK0He8KtX/wAhJo7CnPmU/Dz/AK1S7M247J4Q1e9tDexV9sqh4TqeUtaeYRbLnF25RzDgH5TjQERuFnOyzF2Zi39k2xKLeYKFNrrBU6T/ANxtUo6wUdFJ3VqlpV2SOyvZU4T3P58k7wjLVshwry3VRvUIFrHeHmu/kmMG4YM3vg7W09RopjmyxW63Qe5s0mXKIB4ggK3Pqqb6DYnzQhDQui3W6bWfDgD+0dl8TXpft1HSEP0GdrYgpw7YRKewbxdF7Gkd16vdVC/081wHhW8YPdPJcTy7Fh1vH30Mdy5oFcO6c/w87e7lZtFo6SpfSpR2KMUXtd9KAeD98cnN2gdlCptF3H86T3Gi1zyAVNtTm3HgJaey+Y8wjmEq2LugsNDxgx38ad9Ixnn0VOo68OUt33Chygm6sVvZRMuXDgYRnfQ8dsKlthvqnZvVdT1KPPuiF/rVDceUqQpbYhAOBWxWx9yr74VWtdldllNc5ozEeZtippHxR02Kh7S09Dj906qf+w6IYJQz8TvwrXXFftiHsMOCuYqjcIg74bXXpxe4mAAUO1ldeHUYHjlKmk40T/YU+Iw/hPbVYWOXwTIvEnEPqSyn+SvCpsgBX/Gj7YCpTOVwWWt8ur+DpuU4AWfZNwBwhNp1qYeqfRoXUoVK/FV5M6K5/pTpa7DvhwVJHpK+ZTg9lsQrFy8pKgm3RM9tPsqj/SIuhVePnHaf4rvrPa/6QblQe3ENCznd10xsSXHMUcY0xCkeU65xaBhKDn/tKYu42CjnC+j/AMxlSNJDgrXbrujaceIwApNmo/SqkejD6FOEaoKzM20XwOgN5FU2c1vdU57r/8QAJRABAAICAgICAgMBAQAAAAAAAQARITFBURBhcYGRobHB8NEg/9oACAEBAAE/IRzcLhBWH1rmCFvHnF64BKh0wM+CEWXuX4UJS5vDxgVP/EuXH/twg+CyEyoDK1OifpLvO41Yl9MYDyPFytiyqgfU0usm2aBc87fUX1Pwfp3MRdBUkdy08fgQcvgIy78Lsf8Ao8KpaOoMmfc/Hl/EegusOIfEp8NypmC2c4VIznWfcOcphgQgRWWm/EEw1Y2v1EA51pfcqlz+2IthdPB4Na+PCszX/gdx/SwTL7iViLCEHuP9kbgoWmIaW4fC9R47HnSM0nssszLyVs/cZcMb5oRX9rRG7iraUhdjLqqjhGBWCBlHmVU6YQeRpiZty/ncIIcJBrgxZfeLFEE4LghptFHEzj4JqR7mMuqy42v+yK+aOVhXIl8zLrDDomGvpTTPuwkwLn5yVi4Z+IPn6MRupUhLKwUJXSUvM9RzPsEEQxMpTwhahfxHrZj2NcRbencUbGgGthYM+77ZVz6cMUMm7Sr5ZTRzE0868LTZN/Eg/EPEt2Ey1A2VWiBMWG5QuYC3KPVpLCpajorGoFai+ahfeHFRxpXIhjp0EDtDWxr+ILDL/YS7wE3jwz/CsQlBMpr5f5jBG0o4ZjZbK+GFvL9RkICASyrOgXNQz3cxN3RxxOAJlN4w3KK1gl3UxBcHzBhKiXMv/Vw1L0maikQtcQOxrQ3RLAd6uV6HxDBc5vAQvIqD9XDFO393LZi9R8jEG7a7Tgi5cHoj45V8jx9kItepaH5Nvw+ZxTxHQFkhalvL3TL4Z7ifgByy8cg+sCJbWIMtheL1mpRhbexg5RzQUCLBzwDyi8CK1FQdupq+1PqWJnEFd4jMX4NRFDiBqYFy5QyzZMO7Dl93HGSdQxoL2tzD1FgEa7UAO062nSjiOJlyTgCmLUVQPXLyyoNCfjiBlBqjuYPrE8hVP9Qadw1TpnrKjB1jHq5uB07lDcMxLLI2+Qoy0L4YKvsMpsA92YD6a7j2+RXqP2lrqIs3lqEfUMrRG2OHFmZXcKifhN0DfJn/AJKTPsXjXiOY6V4Pq2YZUzCbh5WuFXDSBU9dMep6CcMpxRpaWWBaDCdz9uM19A6gli0vDmVhX6T3LwhJvBMUm/2TETTzLly5tLJyn+00mJz4KnnNvxBa3ABUGUiqy9x1W5osdVusVhxQy1LblamwPQik5Yq9KTKEINC6moM+qz8eYjmjVT14MS58Urw6OZ+glqcqgQNQFONJZQdwVT7M+TrFOo26ke4yhePXJDCP6mKOWvqMvhznaWQS+JNAb/4PHPhVzDvITJ4Aa6ScQpoZWAlVTnh5mCXiZAaI4X2VHrR7Qz7Sb2hMMxNsV3L4l9/H1ZmWoHO46+xfPrwQwR4n3ObDqWJKZFgjFMEp6lj8MpGXFAqGErwJUsLRYLhlZcWxBA33E84GiK075+Y+C0v7cPCDXo5HwvhcGw8GGZyaU2mQMGZVIFuVqL+HjrfLNydQEwPETI8DuEDKVcUNp6JgG6GbgvgjSAPJFeazUpbBWAlsMOf+WeoRtQzLQ7INOoHBnD/Ec68NJequU0RPB+tOovXGiV5v4Jbc1fUbQ+xIBCHX98ABXeYjviZxeAQ0/M7F8xgDNYl+JdbxAoSjGyJsbhPpG/1Mp8fG7QqgLp5mXgyHtLYtwzQeyNEDSG9XL7Y2dfjSGo+4kmh7gU3OL/oXqM5YhtPsgHjwkNoR3RiUvE/GUL2sNksDxNgavuC7yxJhYF7JRa9SDIBTFRAg2eP5x6j1A7mJQZjm1i6zuNbcVF7jAqt6l2T5UlYe0mm/pQshfUGxR7Z8acalAIzVKwMRq5bKeg5fcPIDEeSzszRw9/M28rnmCw8JaDbDUqXAyyd+c9MX3n1Avxo8c9sBZKcxlLGHqa36iLkdzCPA7TiALZl/Mx2O1m2ZQbn1UcNy+Z2ajd4jVW2l7Zs8Viamyp+XK9zEO/Fc1/EPGsXGZgFiEU057iLRBjAaP1Kkhl/AEpF3+0HkdxdjbHy8XmK25ZnRnGbEvEtaXGSMnEWtyrlTBTOUg+N6YqOjB7IASsHUtbrxNqHctRvMUK+YeLK6+SAibiE5enUr8WZhWGUq3Uz4nPzFUbXqWQKCz3Ne9/UGY1BnGYLVPSiL4cQxzMJ7lQpgMOffVQAbF5gdHmpl8lBf1U//2gAMAwEAAgADAAAAEEXcK9OZfvY5xP8A0FyNEE/yQkdH6H2X6kkc9ng9fH3DjH4i4z8L2v1zqWnBNfM7lkMB2IooHz+UIB1sPzwKASZ2mNloMNNKhmYpteAFKv8A9RJu/RPrYUVtOhgLMdesCL5obCsRMGNQJQ+EUG/GB0gtloXHsJR8+9f+gcdejg8DD//EAB4RAQEBAAMAAwEBAAAAAAAAAAEAERAhMSBBUTDh/9oACAEDAQE/EJt4fYTuS9ln8tmsnhYTGfxbWDnGWcnszJLKJsfvSB2B7y7k+c5wcDqMyEg3vFaoSR8HLYTqbWF36ZrpLFlHtgTwe/I87l6fds6TQn6Xe5OHcRv29HIeG8rLGh4pDuZJgbpH1TVtCLkd28jkoh84UyR9xfpbaeWzdw8oGt35DF84tR2QvpbNbRyY8GHfIgh4Q9GV14QEC/1WDsgycrLsuyeSgO7AAW8HvOmLci8hQ9jMUZV4cn6O7GdziDlnsA0tvw8TzkncAHp7u8vxPsMeUBnPbDIDAOw4Ma3/xAAfEQEBAQEBAQACAwEAAAAAAAABABEhMRBBYSAwsVH/2gAIAQIBAT8Qj5keSDjaeQH+pYYSb7AjpECsHzbfmz5DEdbrmTOdSONo5cMT/HZ8EiMlHspsWQGDsvzvzbGZrD8HwAnTaPISYSfj/INtX6XcRdvdtfUt8jWHlgiTbGyz4DbARvubwh3p2N+zdjYMibLPjE6PZTmQG5P4CHbEGyOT4vquC4bXw9f8X6pkcSXkMdg/QtHGeQK+fiEjsEcgpR0/xdcZ15CguQk8Gx22ZM2vYsD2fPhdH/sk5sAPC6QkAfA0O8HwDOOfRylcfn6XkF+dcGp2rjhY7iHTWZg/HO/COBJKazJkxjPl/8QAJBABAAICAgICAgMBAAAAAAAAAQARITFBUWFxgZGhscHh8NH/2gAIAQEAAT8QUsWtNRl3gRrF5i8fQzxd/pmBdHVTAW3uyXBNN5YPsOqi2qWXVOJjXCH0yh0pKveCEUvuIMc1t4COFsSpnjmoj4uKmxWDI4rmJ2bPEF26Y+UvMtSsDuLdfqLqmy+IpC2Y82Xqcm6b1MYo2ei8H9QhWa6lA5xX5grp38S80s1G7KREYgF2fsMuKZdMczyaKVvt9EPi3xCqGAf9mXyMUIqteT6jjv8AfJ5HdsIibqvTqgQZEeEAbyr4bi2NU7ukYqwuhq4gDUK3+upa1cgzLwSualq93gCXPOMXMKOPUbqv5i0XdvbM7Wr+hp+5x2xEAviGgeblx1yRLp+UbVWltOVX8kMStS0g3b/EJkTYbDFC1dZWonaAhBdYwe5l7APgKKLX3iHxxdnlA1RZ4mP4h2/m5vmDNwObstZPcGqDdtfKvmO7wzIOuR8MRAg6lG4YFDxG4EklJcbvEADEbwUKxiIlLzEo+ZVhix8xz6qtZwiv4iq8x6RtSrLKDHzCHQXwYjGb2PZ+yKNYpsdX+4Tor+iDgANwam1tA3Byy80Ul7vsz84o+IqXVdwOxeEh7gBZcGQzvUsNLDwKR0hayFYxSVXyR/8AVktHb3FpUsvnmDgsEqWg1R+YlX/MC8wXZZv1AHaV3HgY4hxhQnph+mXGgs1NVNeYbCX/AG4wgoeeIrFW3Co3M5lDbAictTBn9yr4NpSjggJppgmI7q67rUaqMKslNJeSV5KivZ115gRGtA3YZz7uOA7S1vw/cwUfQUkDfKUE6lkoZvuDlI0BRcY/w3BWqqvghbJh1AKlOUC6ur5geKTMpc7rxLGwVXpx/McGGsdlLLrjiGz5JWXKNLBrG3DEo0Uu3jGfOIWAonA4uPdpBxXEwJEtFSkEDilBjqKBCZrghL8B3r+YXk2BeviACYWyd1eCAdRM2rywVk2GOIjs2o1FO6yucvqY2SxtGGtcRPUWS1KqjcdY36hsJnHL5PxNs7e5pF4lTsGzxAoqsI8hiLvPywNSlq4C9yYr1LQIo6qUOKMYg/uFXmsGbJUxScMGr03UZa4i6hmeIpBg6ocRMQWm0AZUL7PUSULyPEMIKGUKzscW6gHF9zyRdof3DGcjdxFv5/8Acy/ORyVAVdZ3UVPMMk58Q4vVw57KknaqvqZBR/UVJikrEDQ3ZmVLwt5zCNFAF8AcwAaHcAEaMIiBN3qZG9fqCdLHJGBxhZX5hk+ZWWDMwjsj5ATn31FUvKeq6b4zH+CUOxsC3xiKIZMF21LrptlLIo31EUqjqOq0sivqZf3KBZvnUweLu+B/UL4wJOOmWILQiYlADa3iLbtCCJWTF1KGwXYXPM32uVR7F09yjfAA7iVpMpcMo3grhdjVQCL9xOkZz1KhdlvbG3XbV2RRJtRVmUycylWwLVV2ag5iz7IY4cfuWi/SJ3VfcGWExK3db3zL2mQPsP8AsosvHe6mU/iFsxaYsbOeskNdS2aYfxDESSGy45EaBa99hr5gHsctkPkY5F22cwjZTl2TfQ9KLAelVnxcJDeVKe+ZUoe0BR69RLovSWEsb+JZrhJn1S1Gxp4ET5RSZ6SXK5KmFKaSJXv3Gv3qUctcjEJj8zVxfMqbAtvYkduBN5gDVfcAC0dTKfJPDHY3hK2W/wCmWFbqeEGGjjDS3uXe8qMrgC/uM+QDHA3XUtrgZdImU9QqYQRrdWbleti6vQvFdxQMqByh1fMN4AaOOZcEJCf43Md+WtPakYEqBaJ+BX6QlV1rOp7Ylw4GAAce5Y5blQUtvATHVnXctfjBfTKlzYj7zBAaWqJmWLxRzGVmLslXNAx4H9y0VyA2xENtJUYHAq0hVQkWgJfPk+YQ8FQWYczCDoRvxYFU5YNRq0HOTcDPeJZDqYzlId1ZLbROMhzblmcJqd51fkKSqWZxcs7YFz1cODWoGqLvzKZ7eWWUuni2BVltbuA4t+Jdbm455Cn9SxN1cpwc3Ee0nMBQRZycP4gRQoajEC606+ZbMTdE5eLgkrNRfqFEJyMv7YEwNVGqlUxQNZQL9xHwRoWwoHrd4lTGlgviWJxX5Dwdt5hnpS5QMHi9QLDi6ZQxgNr4l3rMwB0S4IIEf1Gw76xCttzJNUeCVBtR7w/bCnJuPpBhpmte4YLQi+V/czE8rWN5Zy4gZHg6Vrkj0tah8QrayDZT7iFzQlxldFx4grEyV1LtiZeSJwVsL/MBAr07qCZ7rc+EAGDxUz+Zanmqy8eVS1aqKbK8ES9mY6yRUznwQtmom33DHwy10cMwFy8TNY12S/2W1w4lVKjRG2A25ioNnNfNdQ0wngte5Zvijqk5mAofmS97WhjqsmR0n1GrHsQC4kDmmV/X3BGtHuHgG/UqaydXHgc1/DKv23fgO2PzSuRnBXR3tgKweTVQWHiDIBcK6cYHez9QFWY3ArZZ7wwQoZNShChVo7AB7iEG1s0lL9wuFm3XCQGaBqKYAt0H1G4LkMypXugARM0iyxlDTmUdi3HG04egd/LMjb9xRWjXTMVzfUN7/DF5JXTnMUqza12pr7NyqrFKQfXcZQkFqmSM3AIM4w4ZbSNqnzL3SvXcJ3dpYfmJzsoBbNehhUbnrYlwwV1R/EBAJWLr3H0LeQzjuAlYpXUE8EowPuATD5XcNCI4RVyW0Whg+4ABFBTJbNx85W9jPq11AsW/ctlc0IMrKx0Plr4B6GAaNsoI+L+ZkG/cYDrcVXo2XKiq068l47lcLkOD0cRJBB0B6eX1EqoFKOSVkiU51PwxKOVtVfhmcW21RfQIGYzUhgG3piAvhgoA4I9jVsWwJVM741AjJ7f8s1UtxsyFXZh3yRK5LB9Br4R0ebSon2lju03KOBbXJGPQxBosR+X7isliDYwQpg01xzEvjsB2uiMyA8/gOY7bxeCFshkUP8v5iiqqrVYlwUAKf8lxdQVkgVJKcjWnhgCSwI3AyKDwxBAJFZZb4TYZQFS05GY+WvMQYUqgLQzsqo80EGq14E1BcTg0eL39RHtVF1+BPuHAPARl8lH3HUXA8sCOkzxLnRqMuReovL2xALcpDQyhlH4vR5hLWpi/kI6PbkaB5dsw6waowQObKP4hRjT9xla8ND7Y+gXljY12jT4TkmObg0eQXXqOl2ayTRV8iRa6YCBkRrQ1e4xQUi1k2v0RF6S4m94gO3fE+XAZaSAaW5VEBjwy+ArOS+GKVmLOGAx8DGLDQZXxUBAofPk7v6lC8XS1+YSHorthEMFgql31URZRR9QlGg60wi2W2Wf8R4tW/oCKV5cExUKG2ctXzr4iqG1UT8wy3Gh/vHnlFYxzwliH3BF1OFQ8EFO0Ea7mccHmLoucPLAIa1jLuOrMzh4hNFvU1eXP7ic8pVvheCvm5UnSDYXkdvxKN+a8r5hVSA7IAJWWIG2hxMeoY27gruOKJdvRUakYTvG4Rd8RLMUS7y1rkirFDuKC0OyDZ16JQwPqNCAfmN2WeXIzFcmmq7ngIfjxLKUor6gNFuboy/VsHhAstNSdG3vfqPtsXvbTHofxEVbGhyy2NjywHuBYMbe+oT2cMLZN1qzZEqqPgJLgUTFS/MGCvJHKWaJw9Ss2mZ14aiU79Q4G+IysMaeJios7qFelCs5hLrI1UoTbbSCYOBke2NoMVr04MZZgavWt8h+vuY7qzH6AWYmMAF0AK/cotNl59HjxL+qLXiUBduPEQOxpzge7kv8AqVpNmIsAzi4BklkypdpjyShEFFmvMe4WCbQ8yw5F8MUB3xL7AHbUB9BGoup4lcNC5FxCkq5h3Kg1SjMfMHrBgGomexoYAg5Ti3PVbj/IqB4X9pLuAduhUAHgF+ZqfnG2jNdWN/BEYF3JuDnIV2t2QioJxYw1VMTFPUwI11Zu7llJ6URM7q+iNDgOdRTwpkqPLV7RNo+HKDvVQjB1iUoqNxGWZo6gEsvNnMU9lGTUuEqlWEUVL6S50Dha5j6Eg68jNd7VKVS6+CLxoXRZxfmpla+RvRZ9M//Z" alt="" width="52" height="52">
+                <div><b>Gustavo Martins</b><span data-i18n="phone.sub">Mobile Dev · Goiânia, Brazil</span></div>
+              </div>
+              <div class="tiles">
+                <div class="tile on"><i>KT</i><div><b>Android</b><small>Kotlin · Java</small></div></div>
+                <div class="tile on"><i>SW</i><div><b>iOS</b><small>Swift · SwiftUI</small></div></div>
+                <div class="tile on"><i>−3</i><div><b data-i18n="tile.remote">Remote</b><small>UTC−3</small></div></div>
+                <div class="tile"><i>EN</i><div><b data-i18n="tile.en">English</b><small data-i18n="tile.enlvl">advanced</small></div></div>
+              </div>
+              <div class="rows">
+                <div><span data-i18n="row.since">Mobile since</span><b>2021</b></div>
+                <div><span data-i18n="row.deg">Degree</span><b data-i18n="row.degv">Software Eng.</b></div>
+                <div><span data-i18n="row.status">Status</span><b data-i18n="row.statusv">Available</b></div>
+              </div>
+              <p class="style-label" data-i18n="phone.style">Wallpaper & style</p>
+              <div class="swatches" role="group" aria-label="Theme color" data-i18n-aria="sw.group">
+                <button type="button" class="sw" id="sw-152" style="--sh:152" data-h="152" aria-pressed="true" aria-label="Green"  data-i18n-aria="sw.green"></button>
+                <button type="button" class="sw" id="sw-250" style="--sh:250" data-h="250" aria-pressed="false" aria-label="Blue"  data-i18n-aria="sw.blue"></button>
+                <button type="button" class="sw" id="sw-300" style="--sh:300" data-h="300" aria-pressed="false" aria-label="Violet" data-i18n-aria="sw.violet"></button>
+                <button type="button" class="sw" id="sw-25"  style="--sh:25"  data-h="25"  aria-pressed="false" aria-label="Coral" data-i18n-aria="sw.coral"></button>
+                <button type="button" class="sw" id="sw-80"  style="--sh:80"  data-h="80"  aria-pressed="false" aria-label="Amber" data-i18n-aria="sw.amber"></button>
+              </div>
+            </div>
+            <div class="app-foot" aria-hidden="true"><span class="gesture"></span></div>
+          </div>
+        </div>
+        <p class="device-cap" data-i18n="phone.cap">Pick a color on the phone. The whole page recolors from it, the way <code>Material You</code> does on Android.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="sobre">
+    <div class="wrap about">
+      <div>
+        <p class="log"><span class="ts" data-ts></span><span class="lv lv-i" aria-hidden="true">I</span><span><span class="tag">About</span>: <span class="msg" data-i18n="about.log">who is on the other side of the app</span></span></p>
+        <h2 data-i18n="about.h">From law school to code</h2>
+      </div>
+      <div class="about-body">
+        <p data-i18n="about.p1">I am a software engineer focused on <strong>native mobile development</strong>. I started as an Android intern in 2021 and have been building and maintaining production apps ever since, mostly in Kotlin and Java, and also on iOS with Swift, SwiftUI and UIKit.</p>
+        <p data-i18n="about.p2">I care about well-designed architecture and code the next developer can read. At LG lugar de gente I led the migration of the Gen.te Mobile and Feedback Gen.te Android apps to the architecture Google recommends. At Taqtile I started on iOS and became the main owner of the app’s Android side, with Claude Code part of the team’s daily workflow.</p>
+        <p data-i18n="about.p3">Before tech, I earned a law degree from UFG and worked as a lawyer. That background left me careful with requirements, clear in writing and comfortable talking to business teams.</p>
+        <div class="facts">
+          <span class="fact" data-i18n="fact.1">B.Sc. Software Engineering · UFG</span>
+          <span class="fact" data-i18n="fact.2">Law degree · UFG</span>
+          <span class="fact" data-i18n="fact.3">Advanced English</span>
+          <span class="fact" data-i18n="fact.4">Remote · Brazil & abroad</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="stack">
+    <div class="wrap">
+      <p class="log"><span class="ts" data-ts></span><span class="lv lv-d" aria-hidden="true">D</span><span><span class="tag">Stack</span>: <span class="msg" data-i18n="stack.log">dependencies resolved</span></span></p>
+      <h2 data-i18n="stack.h">What I work with</h2>
+      <p class="sec-intro" data-i18n="stack.intro">Android is my foundation. iOS came next, and backend shows up whenever an app needs an API that works well.</p>
+      <div class="stack">
+        <div class="grp main">
+          <div class="grp-head"><h3>Android</h3><span class="lvl" data-i18n="lvl.main">main track</span></div>
+          <p data-i18n="stack.android">Native apps in production, from maintenance to architecture modernization.</p>
+          <ul class="chips"><li>Kotlin</li><li>Java</li><li>Clean Architecture</li><li>MVVM</li><li>MVC</li><li>Firebase</li><li>Crashlytics</li></ul>
+        </div>
+        <div class="grp">
+          <div class="grp-head"><h3>iOS</h3><span class="lvl" data-i18n="lvl.ios">in production</span></div>
+          <p data-i18n="stack.ios">Screens and maintenance on native apps, with SwiftUI for newer features.</p>
+          <ul class="chips"><li>Swift</li><li>SwiftUI</li><li>UIKit</li><li>MVVM</li></ul>
+        </div>
+        <div class="grp">
+          <div class="grp-head"><h3 data-i18n="stack.beh">Backend & web</h3><span class="lvl" data-i18n="lvl.be">supporting</span></div>
+          <p data-i18n="stack.be">.NET APIs consumed by the apps, and web projects in Node.js with TypeScript.</p>
+          <ul class="chips"><li>C#</li><li>ASP.NET MVC</li><li>REST</li><li>Node.js</li><li>TypeScript</li><li>Oracle</li></ul>
+        </div>
+        <div class="grp">
+          <div class="grp-head"><h3 data-i18n="stack.wfh">How I work</h3><span class="lvl" data-i18n="lvl.wf">always</span></div>
+          <p data-i18n="stack.wf">Agile teams, tidy version control and AI in the development workflow.</p>
+          <ul class="chips"><li>Git</li><li>Scrum</li><li>SOLID</li><li data-i18n="chip.patterns">Design patterns</li><li>Claude Code</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="produtos">
+    <div class="wrap">
+      <p class="log"><span class="ts" data-ts></span><span class="lv lv-i" aria-hidden="true">I</span><span><span class="tag">Products</span>: <span class="msg" data-i18n="work.log">published builds</span></span></p>
+      <h2 data-i18n="work.h">Where my code is running</h2>
+      <p class="sec-intro" data-i18n="work.intro">So far my work lives in company and client apps with private code. So here are the products and what I did on each one. Open personal projects are on the way.</p>
+      <div class="cards">
+        <article class="card lead">
+          <div class="card-top"><span class="kicker">Taqtile Brasil · 2025–2026</span><span class="plats"><span class="plat">Android</span><span class="plat">iOS</span></span></div>
+          <h3 data-i18n="w1.h">Sephora Brazil and Sephora Mexico</h3>
+          <p data-i18n="w1.p">Sephora’s native e-commerce apps for the Brazilian and Mexican markets.</p>
+          <ul class="pts">
+            <li data-i18n="w1.a">Joined the iOS team, building features in SwiftUI.</li>
+            <li data-i18n="w1.b">From late 2025, became the main owner of the Android app while still contributing to iOS.</li>
+            <li data-i18n="w1.c">Team working with Claude Code as part of daily development.</li>
+          </ul>
+          <ul class="chips"><li>Kotlin</li><li>Swift</li><li>SwiftUI</li><li data-i18n="chip.remote">Remote</li></ul>
+        </article>
+        <article class="card lead">
+          <div class="card-top"><span class="kicker">LG lugar de gente · 2021–2024</span><span class="plats"><span class="plat">Android</span><span class="plat">iOS</span></span></div>
+          <h3 data-i18n="w2.h">Gen.te Mobile and Feedback Gen.te</h3>
+          <p data-i18n="w2.p">Mobile apps for LG lugar de gente’s people-management platform.</p>
+          <ul class="pts">
+            <li data-i18n="w2.a">Led the update of the Android apps to the Clean Architecture Google recommends.</li>
+            <li data-i18n="w2.b">Built and maintained the .NET APIs consumed by the apps.</li>
+            <li data-i18n="w2.c">Maintained the native iOS apps for the same products.</li>
+          </ul>
+          <ul class="chips"><li>Kotlin</li><li>Java</li><li>Clean Architecture</li><li>.NET</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="trajetoria">
+    <div class="wrap">
+      <p class="log"><span class="ts" data-ts></span><span class="lv lv-v" aria-hidden="true">V</span><span><span class="tag">History</span>: <span class="msg" data-i18n="path.log">full log, verbose mode</span></span></p>
+      <h2 data-i18n="path.h">Experience and education</h2>
+      <div class="tl-grid">
+        <div>
+          <p class="col-title" data-i18n="path.exp">Experience</p>
+          <ol class="tl">
+            <li class="recent">
+              <span class="when" data-i18n="e1.w">Mar 2025 – Oct 2026</span>
+              <h3 data-i18n="e1.r">Mobile Developer</h3>
+              <p class="org" data-i18n="e1.o">Taqtile Brasil · full-time · remote</p>
+              <ul><li data-i18n="e1.a">Sephora Brazil and Mexico apps: iOS (SwiftUI) and, from late 2025, main owner of the Android app.</li></ul>
+            </li>
+            <li>
+              <span class="when" data-i18n="e2.w">Nov 2021 – Jun 2024</span>
+              <h3 data-i18n="e2.r">Mobile Developer</h3>
+              <p class="org" data-i18n="e2.o">LG lugar de gente · full-time · remote</p>
+              <ul>
+                <li data-i18n="e2.a">Built and maintained the Gen.te Mobile and Feedback Gen.te Android apps.</li>
+                <li data-i18n="e2.b">Led the migration to Clean Architecture.</li>
+                <li data-i18n="e2.c">.NET APIs for the apps and maintenance of the iOS apps.</li>
+              </ul>
+            </li>
+            <li>
+              <span class="when" data-i18n="e3.w">Feb 2021 – Oct 2021</span>
+              <h3 data-i18n="e3.r">Mobile Developer (internship)</h3>
+              <p class="org">LG lugar de gente</p>
+              <ul><li data-i18n="e3.a">Maintained the Android apps, tested new features and shipped small improvements.</li></ul>
+            </li>
+            <li>
+              <span class="when" data-i18n="e4.w">Aug 2019 – Apr 2022</span>
+              <h3>Level 5</h3>
+              <p class="org" data-i18n="e4.o">Student-run software company · UFG</p>
+              <div class="sub-roles">
+                <div><span class="when">2021–22</span><span data-i18n="e4.a">Full stack developer: Node.js and TypeScript APIs, plus project management.</span></div>
+                <div><span class="when">2020</span><span data-i18n="e4.b">HR Director: tracked member performance across ongoing projects.</span></div>
+                <div><span class="when">2019</span><span data-i18n="e4.c">Web developer.</span></div>
+              </div>
+            </li>
+            <li>
+              <span class="when" data-i18n="e5.w">May 2019 – Jan 2021</span>
+              <h3 data-i18n="e5.r">C# .NET Developer (internship)</h3>
+              <p class="org">Odilon Santos Adm. e Participações</p>
+              <ul><li data-i18n="e5.a">Started in IT support, then maintained internal .NET systems and built database views.</li></ul>
+            </li>
+            <li class="other">
+              <span class="when" data-i18n="e6.w">Dec 2017 – May 2019</span>
+              <h3 data-i18n="e6.r">Lawyer</h3>
+              <p class="org">TC Engenharia</p>
+              <ul><li data-i18n="e6.a">In-house legal work, before moving into tech.</li></ul>
+            </li>
+          </ol>
+        </div>
+        <div>
+          <p class="col-title" data-i18n="path.edu">Education</p>
+          <div class="edu">
+            <div class="edu-item">
+              <span class="when">2018 – 2024</span>
+              <h3 data-i18n="d1.h">B.Sc. Software Engineering</h3>
+              <p data-i18n="d1.p">Federal University of Goiás (UFG)</p>
+            </div>
+            <div class="edu-item">
+              <span class="when">2012 – 2016</span>
+              <h3 data-i18n="d2.h">Law degree (LL.B.)</h3>
+              <p data-i18n="d2.p">Federal University of Goiás (UFG)</p>
+            </div>
+            <div class="edu-item">
+              <span class="when" data-i18n="d3.w">language</span>
+              <h3 data-i18n="d3.h">Advanced English</h3>
+              <p data-i18n="d3.p">Speaking, reading and writing in day-to-day work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contato">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <p class="log"><span class="ts" data-ts></span><span class="lv lv-w" aria-hidden="true">W</span><span><span class="tag">Contact</span>: <span class="msg" data-i18n="c.log">waiting for your message</span></span></p>
+          <h2 data-i18n="c.h">Let’s talk?</h2>
+          <p data-i18n="c.p">I am open to mobile development roles, Android or iOS, in Brazil or abroad, fully remote. The fastest way to reach me is LinkedIn or email.</p>
+        </div>
+        <div class="links">
+          <a class="lrow" href="https://www.linkedin.com/in/dev-gustavomartins" target="_blank" rel="noopener"><span>LinkedIn ↗</span><span class="val">/in/dev-gustavomartins</span></a>
+          <a class="lrow" href="https://github.com/ghfmartins" target="_blank" rel="noopener"><span>GitHub ↗</span><span class="val">@ghfmartins</span></a>
+          <div class="lrow">
+            <span>Email</span>
+            <span class="mail-val"><span class="val" id="mail">gh.martins9@gmail.com</span><button type="button" class="copy" id="copy-mail" data-i18n="c.copy">copy</button></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Gustavo Martins</span>
+    <span data-i18n="foot">Goiânia, Brazil · HTML and CSS, no frameworks</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var ALT = {
+    "nav.about": "Sobre",
+    "nav.stack": "Stack",
+    "nav.work": "Produtos",
+    "nav.path": "Trajetória",
+    "nav.contact": "Contato",
+    "clock.city": "Goiânia",
+    "hero.status": "disponível para novas oportunidades",
+    "hero.role": "Engenheiro de software mobile. Apps nativos para Android e iOS.",
+    "hero.lede": "Trabalho com mobile desde 2021, com foco em Android (Kotlin e Java) e experiência em iOS com Swift e SwiftUI. Já liderei a modernização da arquitetura de apps em produção e atuei nos apps nativos da Sephora no Brasil e no México.",
+    "hero.cta": "Falar comigo",
+    "phone.title": "Perfil",
+    "phone.sub": "Dev Mobile · Goiânia, GO",
+    "tile.remote": "Remoto",
+    "tile.en": "Inglês",
+    "tile.enlvl": "avançado",
+    "row.since": "Mobile desde",
+    "row.deg": "Formação",
+    "row.degv": "Eng. de Software",
+    "row.status": "Status",
+    "row.statusv": "Disponível",
+    "phone.style": "Papel de parede e estilo",
+    "phone.cap": "Escolha uma cor no celular. A página inteira se recolore a partir dela, como o <code>Material You</code> faz no Android.",
+    "about.log": "quem está do outro lado do app",
+    "about.h": "Do Direito para o código",
+    "about.p1": "Sou engenheiro de software focado em <strong>desenvolvimento mobile nativo</strong>. Comecei como estagiário Android em 2021 e desde então construo e mantenho apps em produção, principalmente em Kotlin e Java, também atuando no iOS com Swift, SwiftUI e UIKit.",
+    "about.p2": "Gosto de arquitetura bem pensada e de código que o próximo desenvolvedor consegue entender. Na LG lugar de gente, liderei a migração dos apps Android Gen.te Mobile e Feedback Gen.te para a arquitetura recomendada pelo Google. Na Taqtile, comecei no iOS e passei a ser o principal responsável pelo Android do app, usando o Claude Code no dia a dia do time.",
+    "about.p3": "Antes da tecnologia, me formei em Direito pela UFG e trabalhei como advogado. Desse período ficaram o cuidado com requisitos, a escrita clara e a facilidade para conversar com áreas de negócio.",
+    "fact.1": "Eng. de Software · UFG",
+    "fact.2": "Direito · UFG",
+    "fact.3": "Inglês avançado",
+    "fact.4": "Remoto · Brasil e exterior",
+    "stack.log": "dependências resolvidas",
+    "stack.h": "Com o que eu trabalho",
+    "stack.intro": "Android é a minha base. iOS veio em seguida, e o backend aparece sempre que o app precisa de uma API que funcione bem.",
+    "lvl.main": "principal",
+    "stack.android": "Apps nativos em produção, da manutenção à modernização da arquitetura.",
+    "lvl.ios": "em produção",
+    "stack.ios": "Telas e manutenção de apps nativos, com SwiftUI nas features mais recentes.",
+    "stack.beh": "Backend e web",
+    "lvl.be": "apoio",
+    "stack.be": "APIs .NET consumidas pelos apps e projetos web em Node.js com TypeScript.",
+    "stack.wfh": "Forma de trabalhar",
+    "lvl.wf": "sempre",
+    "stack.wf": "Times ágeis, versionamento organizado e IA no fluxo de desenvolvimento.",
+    "chip.patterns": "Design patterns",
+    "work.log": "builds publicados",
+    "work.h": "Onde meu código está rodando",
+    "work.intro": "Até aqui, meu trabalho está em apps de empresas e clientes, com código privado. Por isso, aqui estão os produtos e o que eu fiz em cada um. Projetos pessoais abertos estão a caminho.",
+    "w1.h": "Sephora Brasil e Sephora México",
+    "w1.p": "Apps nativos de e-commerce da Sephora para os mercados brasileiro e mexicano.",
+    "w1.a": "Entrei no time iOS, desenvolvendo features em SwiftUI.",
+    "w1.b": "A partir do fim de 2025, assumi como principal responsável pelo Android, sem deixar o iOS.",
+    "w1.c": "Time trabalhando com Claude Code no dia a dia do desenvolvimento.",
+    "chip.remote": "Remoto",
+    "w2.h": "Gen.te Mobile e Feedback Gen.te",
+    "w2.p": "Apps mobile da plataforma de gestão de pessoas da LG lugar de gente.",
+    "w2.a": "Liderei a atualização da arquitetura dos apps Android para a Clean Architecture recomendada pelo Google.",
+    "w2.b": "Desenvolvi e mantive as APIs .NET consumidas pelos apps.",
+    "w2.c": "Mantive os apps nativos iOS dos mesmos produtos.",
+    "path.log": "log completo, modo verbose",
+    "path.h": "Experiência e formação",
+    "path.exp": "Experiência",
+    "e1.w": "mar 2025 – out 2026",
+    "e1.r": "Desenvolvedor Mobile",
+    "e1.o": "Taqtile Brasil · tempo integral · remoto",
+    "e1.a": "Apps Sephora Brasil e México: iOS (SwiftUI) e, a partir do fim de 2025, responsável principal pelo Android.",
+    "e2.w": "nov 2021 – jun 2024",
+    "e2.r": "Desenvolvedor Mobile",
+    "e2.o": "LG lugar de gente · tempo integral · remoto",
+    "e2.a": "Desenvolvimento e manutenção dos apps Android Gen.te Mobile e Feedback Gen.te.",
+    "e2.b": "Liderança da migração para Clean Architecture.",
+    "e2.c": "APIs .NET para os apps e manutenção dos apps iOS.",
+    "e3.w": "fev 2021 – out 2021",
+    "e3.r": "Desenvolvedor Mobile (estágio)",
+    "e3.a": "Manutenção dos apps Android, testes de novas funcionalidades e melhorias pontuais.",
+    "e4.w": "ago 2019 – abr 2022",
+    "e4.o": "Empresa júnior de software · UFG",
+    "e4.a": "Desenvolvedor full stack: APIs em Node.js e TypeScript e gestão de projetos.",
+    "e4.b": "Diretor de RH: acompanhamento do desempenho dos membros nos projetos.",
+    "e4.c": "Desenvolvedor web.",
+    "e5.w": "mai 2019 – jan 2021",
+    "e5.r": "Desenvolvedor C# .NET (estágio)",
+    "e5.a": "Começou no suporte de TI; depois manutenção dos sistemas internos em .NET e views de banco de dados.",
+    "e6.w": "dez 2017 – mai 2019",
+    "e6.r": "Advogado",
+    "e6.a": "Atividades jurídicas internas, antes da transição para tecnologia.",
+    "path.edu": "Formação",
+    "d1.h": "Engenharia de Software",
+    "d1.p": "Universidade Federal de Goiás (UFG)",
+    "d2.h": "Direito",
+    "d2.p": "Universidade Federal de Goiás (UFG)",
+    "d3.w": "idioma",
+    "d3.h": "Inglês avançado",
+    "d3.p": "Conversação, leitura e escrita no dia a dia de trabalho.",
+    "c.log": "aguardando sua mensagem",
+    "c.h": "Vamos conversar?",
+    "c.p": "Estou disponível para vagas de desenvolvimento mobile, Android ou iOS, no Brasil ou no exterior, em formato remoto. O jeito mais rápido de falar comigo é pelo LinkedIn ou por e-mail.",
+    "c.copy": "copiar",
+    "foot": "Goiânia, GO · HTML e CSS, sem frameworks",
+    "sw.group": "Cor do tema",
+    "sw.green": "Verde",
+    "sw.blue": "Azul",
+    "sw.violet": "Violeta",
+    "sw.coral": "Coral",
+    "sw.amber": "Âmbar"
+  };
+  var BASE = {}, BASE_ARIA = {};
+  var nodes = document.querySelectorAll('[data-i18n]');
+  nodes.forEach(function (n) { BASE[n.getAttribute('data-i18n')] = n.innerHTML; });
+  var ariaNodes = document.querySelectorAll('[data-i18n-aria]');
+  ariaNodes.forEach(function (n) { BASE_ARIA[n.getAttribute('data-i18n-aria')] = n.getAttribute('aria-label'); });
+  var copyLabel = { en: { done: 'copied', fail: 'selected' }, pt: { done: 'copiado', fail: 'selecionado' } };
+  var lang = 'en';
+
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+  function setLang(l) {
+    lang = l;
+    document.documentElement.lang = l === 'pt' ? 'pt-BR' : 'en';
+    nodes.forEach(function (n) {
+      var k = n.getAttribute('data-i18n');
+      var v = l === 'pt' ? ALT[k] : BASE[k];
+      if (v != null) n.innerHTML = v;
+    });
+    ariaNodes.forEach(function (n) {
+      var k = n.getAttribute('data-i18n-aria');
+      var v = l === 'pt' ? ALT[k] : BASE_ARIA[k];
+      if (v != null) n.setAttribute('aria-label', v);
+    });
+    document.querySelectorAll('[data-lang]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === l));
+    });
+    stamp();
+    store('gm-lang', l);
+  }
+  document.querySelectorAll('[data-lang]').forEach(function (b) {
+    b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
+  });
+
+  // Material You seed
+  var swatches = document.querySelectorAll('.sw');
+  function setSeed(h, save) {
+    document.documentElement.style.setProperty('--h', h);
+    swatches.forEach(function (s) { s.setAttribute('aria-pressed', String(s.getAttribute('data-h') === String(h))); });
+    if (save) store('gm-seed', h);
+  }
+  swatches.forEach(function (s) { s.addEventListener('click', function () { setSeed(s.getAttribute('data-h'), true); }); });
+
+  // Clock in Goiânia (America/Sao_Paulo)
+  var clockFmt;
+  try { clockFmt = new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit', hour12: false }); } catch (e) {}
+  function tick() {
+    var t = clockFmt ? clockFmt.format(new Date()) : '';
+    document.querySelectorAll('[data-clock]').forEach(function (c) { c.textContent = t; });
+  }
+  tick(); setInterval(tick, 15000);
+
+  // Logcat timestamps: MM-DD HH:MM:SS.mmm, a few ms apart like a real log
+  var t0 = Date.now();
+  function pad(n, w) { n = String(n); while (n.length < (w || 2)) n = '0' + n; return n; }
+  function stamp() {
+    var parts = {};
+    try {
+      new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Sao_Paulo', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })
+        .formatToParts(new Date(t0)).forEach(function (p) { parts[p.type] = p.value; });
+    } catch (e) { return; }
+    var base = t0 % 1000;
+    document.querySelectorAll('[data-ts]').forEach(function (el, i) {
+      var ms = (base + i * 37 + i * i * 11) % 1000;
+      el.textContent = parts.month + '-' + parts.day + ' ' + parts.hour + ':' + parts.minute + ':' + parts.second + '.' + pad(ms, 3);
+    });
+  }
+
+  // Copy email
+  var copyBtn = document.getElementById('copy-mail');
+  var mail = document.getElementById('mail');
+  copyBtn.addEventListener('click', function () {
+    function selectIt() {
+      try { var r = document.createRange(); r.selectNodeContents(mail); var s = getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
+      copyBtn.textContent = copyLabel[lang].fail;
+    }
+    var p;
+    try { p = navigator.clipboard && navigator.clipboard.writeText(mail.textContent.trim()); } catch (e) { p = null; }
+    if (p && p.then) p.then(function () { copyBtn.textContent = copyLabel[lang].done; }, selectIt); else selectIt();
+    setTimeout(function () { copyBtn.textContent = lang === 'pt' ? ALT['c.copy'] : BASE['c.copy']; }, 2200);
+  });
+
+  var savedSeed = load('gm-seed');
+  if (savedSeed && document.querySelector('.sw[data-h="' + savedSeed + '"]')) setSeed(savedSeed, false);
+  var savedLang = load('gm-lang');
+  setLang(savedLang === 'pt' ? 'pt' : 'en');
+})();
+</script>
+
+</body>
+</html>
