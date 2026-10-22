@@ -139,7 +139,7 @@ a { color: inherit; }
 }
 .seg button[aria-pressed="true"] { background: var(--primary-c); color: var(--on-primary-c); }
 @media (max-width: 860px) { .nav { display: none; } .clock { margin-left: auto; } }
-@media (max-width: 400px) { .clock { display: none; } .seg { margin-left: auto; } }
+@media (max-width: 560px) { .clock { display: none; } .seg { margin-left: auto; } }
 
 /* ---------- logcat line ---------- */
 .log {
@@ -365,7 +365,17 @@ a.lrow:hover { transform: translateX(3px); }
   border-radius: 999px; padding: 8px 12px; cursor: pointer; min-height: 32px; flex-shrink: 0;
 }
 .copy:hover { background: var(--surface-2); }
-.mail-val { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.lrow.mail { flex-wrap: wrap; row-gap: 10px; }
+.mail-val { display: flex; align-items: center; gap: 10px; min-width: 0; margin-left: auto; }
+.mail-val .val { white-space: nowrap; overflow-wrap: normal; }
+.lrow > span:first-child { white-space: nowrap; }
+@media (max-width: 520px) {
+  .contact { padding: 24px 20px; border-radius: 28px; }
+  .lrow { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .lrow .val { text-align: left; }
+  .lrow.mail { gap: 8px; }
+  .mail-val { margin-left: 0; width: 100%; justify-content: space-between; flex-wrap: wrap; row-gap: 8px; }
+}
 
 footer { padding-block: 40px 56px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font: 400 12.5px/1.5 var(--font-mono); color: var(--fg-muted); }
@@ -635,7 +645,7 @@ img { max-width: 100%; }
         <div class="links">
           <a class="lrow" href="https://www.linkedin.com/in/dev-gustavomartins" target="_blank" rel="noopener"><span>LinkedIn ↗</span><span class="val">/in/dev-gustavomartins</span></a>
           <a class="lrow" href="https://github.com/ghfmartins" target="_blank" rel="noopener"><span>GitHub ↗</span><span class="val">@ghfmartins</span></a>
-          <div class="lrow">
+          <div class="lrow mail">
             <span>Email</span>
             <span class="mail-val"><span class="val" id="mail">gh.martins9@gmail.com</span><button type="button" class="copy" id="copy-mail" data-i18n="c.copy">copy</button></span>
           </div>
